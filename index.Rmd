@@ -1,0 +1,206 @@
+---
+title: "Anualidades"
+author: Alesi Rosas Moreno
+output: html_document
+date: "2023-13-12"
+---
+
+```{r inicio, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("~/Anualidades R/funcionesAnulidades.R")
+
+```
+
+## Introducción
+
+En la presente página web se resolveran problemas de anualidades: vencidas, anticipadas y diferidas.
+
+En esta actividad se estarán utilizando la funciones que se pueden apreciar en este link: [funciones](https://raw.githubusercontent.com/Alesiros/F1TareaProyectoIntegrador1/main/funcionesAnulidades.R)
+
+### Para Valores Futuros
+
+Una persona desea ahorrar **\$500.00** cada *fin de quincena* durante **40** *años.* Si el fondo de inversión paga una tasa de rendimiento del **7.5%**. ¿Cuánto dinero tendrá ahorrado al final de su proyecto financiero?
+
+#### Datos:
+
+-   Anualidades = \$500.00
+
+-   i = 7.5%
+
+-   r = 7.5%/24 = 0.3125%
+
+-   T = 40 años
+
+-   n = 40\*24 = 960
+
+------------------------------------------------------------------------
+
+##### **Vencidas**
+
+**Valor Futuro:**
+
+```{r}
+#Como ya tenemos los datos necesarios solo utilizaremos las formulas sutituyendo valores :)
+VFVen(500,0.003125,960)
+```
+
+Según la función utilizada, tenemos al final un ahorro de \$3,038,688.17 (redondeando). Para comprobar este resultado realizaremos una sustitución en las otra funciones, para ver si los párametros estan correctos.
+
+**Pago**
+
+```{r}
+pagoVFVen(3038688.1705314,0.003125,960)
+```
+
+**Periodo**
+
+```{r}
+periodosVFVen(500,3038688.1705314,0.003125)
+```
+
+Como se observa solo hay pequeñas difencias, ocacionado por el manejo de los decimales. Ahora, utilizaremos funciones para valores futuros pero *anticipados.*
+
+##### **Anticipadas**
+
+**Valor Futuro**
+
+```{r}
+VFAnt(500,0.003125,960)
+```
+
+Ahora vamos a comprobar:
+
+**Pago**
+
+```{r}
+pagoVFAnt(3048184.07106431,0.003125,960)
+```
+
+**Periodo**
+
+```{r}
+periodosVFAnt(3048184.07106431,500,0.003125)
+```
+
+**Tasa**
+
+```{r}
+tasaVFAnt(3048184.07106431,500,960)
+```
+
+------------------------------------------------------------------------
+
+### Para valores actuales
+
+Una persona paga cada quincena \$450.00 durante 2 años. Si la tienda departamental le cobra de 11% de interés ¿Cuánto le prestaron?
+
+#### Datos:
+
+-   Anualidades = \$450.00
+
+-   i = 11%
+
+-   r = 11%/24 = 0.00458333333
+
+-   T = 2 años
+
+-   n = 2\*24 = 48
+
+#### **Vencidas**
+
+**Valor Actual**
+
+```{r}
+A=450
+r=0.00458333333
+t=48
+VAVen(A,r,t)
+```
+
+**Pago**
+
+```{r}
+pagoVAVen(19349.4498043339,r,t)
+```
+
+**Periodo**
+
+```{r}
+periodosVAVen(19349.4498043339,A,r)
+```
+
+**Tasa**
+
+```{r}
+tasaVAVen(19349.4498043339,450,48)
+```
+
+#### **Anticipada**
+
+**Valor Actual**
+
+```{r}
+VA=VAAnt(A,r,t)
+```
+
+**Pago**
+
+```{r}
+pagoVAAnt(19438.1347825393,r,t)
+```
+
+**Periodos**
+
+```{r}
+periodosVAAnt(19438.13,A,r)
+```
+
+**Tasa**
+
+```{r}
+tasaVAAnt(19438.13,A,t)
+```
+
+------------------------------------------------------------------------
+
+### Anualidades Diferidas
+
+Reciclando el problema anterior tenemos que:
+
+Una persona paga cada quincena \$450.00 durante 2 años. Si la tienda departamental le cobra de 11% de interés. ¿Cuánto le prestaron si comienza a pagar 3 meses después de adquirido el financiamiento?
+
+#### Datos
+
+-   Pagos = \$450
+
+-   i = 11%
+
+-   r = 0.11/24 = 0.0045833
+
+-   t = 2\*24 = 48
+
+-   Diferimiento = 3 \* 2 = 6
+
+Para este problema solo utilizaremos 2 funciones: una para calcular el Valor Actual; y la otra para calcular los pagos
+
+**Valor Actual**
+
+```{r}
+A1=450
+r1=(0.11/24)
+t1=48
+D=6
+VADif(A1,r1,t1,D)
+```
+
+Para comprobar este resultado utlizaremos la formula antes mencionada
+
+**Pago**
+
+```{r}
+pagoVADif(18825.7726004772,r1,t1,D)
+```
+
+Listop
+
+(o\^ \^o)/
